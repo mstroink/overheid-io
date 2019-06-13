@@ -1,0 +1,8 @@
+/vendor
+composer.lock
+.env
+.idea
+composer.phar
+phpunit.phar
+.DS_Store
+docs
