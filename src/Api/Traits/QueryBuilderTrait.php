@@ -60,4 +60,11 @@ trait QueryBuilderTrait
     {
         return $this->query;
     }
+
+    public function clearQuery(): self
+    {
+        $this->query = [];
+
+        return $this;
+    }
 }

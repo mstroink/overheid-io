@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 
 interface HttpClientInterface
 {
-    public function getUrl(string $url, array $query = []): ResponseInterface;
+    public function getUrl(string $url): ResponseInterface;
+
     public function getJson(ResponseInterface $response): string;
 }

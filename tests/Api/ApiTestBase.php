@@ -4,11 +4,11 @@ namespace MStroink\OverheidIo\Tests\Api;
 use PHPUnit\Framework\TestCase;
 use MStroink\OverheidIo\Http\HttpClientInterface;
 use GuzzleHttp\Psr7\Response;
-use MStroink\OverheidIo\Api\ApiAbstract;
+use MStroink\OverheidIo\Api\Api;
 
 abstract class ApiTestBase extends TestCase
 {
-    protected $baseUrl = ApiAbstract::BASE_URL;
+    protected $baseUrl = Api::BASE_URL;
     protected $clientMock;
 
     abstract public function getInstance();
@@ -27,8 +27,7 @@ abstract class ApiTestBase extends TestCase
             ->expects($this->once())
             ->method('getUrl')
             ->with(
-                $this->equalTo($this->baseUrl . '/' . $this->resource . '/abc'),
-                $this->equalTo([])
+                $this->equalTo($this->baseUrl . '/' . $this->resource . '/abc')
             )
             ->will($this->returnValue($response));
         
@@ -52,8 +51,7 @@ abstract class ApiTestBase extends TestCase
             ->expects($this->once())
             ->method('getUrl')
             ->with(
-                $this->equalTo($this->baseUrl . '/' . $this->resource),
-                $this->equalTo([])
+                $this->equalTo($this->baseUrl . '/' . $this->resource)
             )
             ->will($this->returnValue($response));
         
@@ -87,14 +85,17 @@ abstract class ApiTestBase extends TestCase
             ->fields(['fieldname'])
             ->filters(['postcode' => '9999AB'])
             ->query('d*size*')
-            ->queryfields(['straat']);
+            ->queryFields(['straat']);
+
+        $query = 'size=20&page=3&ordering=asc&fields%5B0%5D=fieldname';
+        $query .= '&filters%5Bpostcode%5D=9999AB&query=d%2Asize%2A&queryfields%5B0%5D=straat';
+        $expectedUrl = sprintf('%s/%s?%s', $this->baseUrl, $this->resource, $query);
 
         $this->clientMock
             ->expects($this->once())
             ->method('getUrl')
             ->with(
-                $this->equalTo($this->baseUrl . '/' . $this->resource),
-                $this->equalTo($expected)
+                $this->equalTo($expectedUrl)
             )
             ->will($this->returnValue(new Response()));
 

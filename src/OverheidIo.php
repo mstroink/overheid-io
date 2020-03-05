@@ -13,7 +13,7 @@ final class OverheidIo
     /**
      * @var HttpClientInterface
      */
-    protected $client;
+    private $client;
 
     public function __construct(HttpClientInterface $client)
     {

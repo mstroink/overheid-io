@@ -3,16 +3,17 @@ declare(strict_types=1);
 
 namespace MStroink\OverheidIo\Http\Adapter\Guzzle;
 
-use GuzzleHttp\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 use MStroink\OverheidIo\Http\Adapter\Guzzle\Exception\ExceptionHandler;
 use MStroink\OverheidIo\Http\HttpClientInterface;
 use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Psr7\Request;
 
 final class HttpClient implements HttpClientInterface
 {
     /**
-     * @var \GuzzleHttp\Client
+     * @var ClientInterface
      */
     private $guzzleClient;
 
@@ -21,15 +22,12 @@ final class HttpClient implements HttpClientInterface
         $this->guzzleClient = $guzzleClient;
     }
 
-    public function getUrl(string $url, array $query = []): ResponseInterface
+    public function getUrl(string $url): ResponseInterface
     {
+        $request = new Request('GET', $url, ['Accept' => 'application/json']);
+
         try {
-            return $this->guzzleClient->get($url, [
-                'query' => $query,
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
+            return $this->guzzleClient->send($request);
         } catch (TransferException $exception) {
             ExceptionHandler::handleRequestException($exception);
         }

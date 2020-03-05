@@ -5,5 +5,4 @@ namespace MStroink\OverheidIo\Exception;
 
 class NotFoundException extends OverheidIoException
 {
-
 }

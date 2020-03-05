@@ -117,7 +117,6 @@ $rdw->queryFields(['merk']);
 
 // Execute
 $rdw->search();
-
 ```
 
 ## Run tests

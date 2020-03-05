@@ -8,33 +8,38 @@ namespace MStroink\OverheidIo\Api\Traits;
  */
 trait PaginationTrait
 {
-    abstract protected function performHttpCall(string $url, array $query = []): array;
+    protected $next;
+    protected $prev;
+    protected $first;
+    protected $last;
 
-    public function next(array $response): ?array
+    abstract protected function performHttpCall(string $url): array;
+
+    public function next(): ?array
     {
-        $url = $response['_links']['next']['href'] ?? null;
-
-        return (!empty($url)) ? $this->performHttpCall($url) : null;
+        return $this->next ? $this->performHttpCall($this->next) : null;
     }
 
-    public function prev(array $response): ?array
+    public function prev(): ?array
     {
-        $url = $response['_links']['prev']['href'] ?? null;
-
-        return (!empty($url)) ? $this->performHttpCall($url) : null;
+        return $this->prev ? $this->performHttpCall($this->prev) : null;
     }
 
-    public function first(array $response): ?array
+    public function first(): ?array
     {
-        $url = $response['_links']['first']['href'] ?? null;
-
-        return (!empty($url)) ? $this->performHttpCall($url) : null;
+        return $this->first ? $this->performHttpCall($this->first) : null;
     }
 
-    public function last(array $response): ?array
+    public function last(): ?array
     {
-        $url = $response['_links']['last']['href'] ?? null;
+        return $this->last ? $this->performHttpCall($this->last) : null;
+    }
 
-        return (!empty($url)) ? $this->performHttpCall($url) : null;
+    protected function paginate(array $response)
+    {
+        $this->next = $response['_links']['next']['href'] ?? null;
+        $this->prev = $response['_links']['previous']['href'] ?? null;
+        $this->first = $response['_links']['first']['href'] ?? null;
+        $this->last = $response['_links']['last']['href'] ?? null;
     }
 }

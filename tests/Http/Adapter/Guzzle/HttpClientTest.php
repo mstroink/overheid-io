@@ -64,16 +64,6 @@ class HttpClientTest extends TestCase
     }
 
     /**
-     * @expectedException \MStroink\OverheidIo\Exception\NotFoundException
-     * unfortunately overheid.io returns 500 when a resource is not found
-     */
-    public function testGetUrlWith500Exception()
-    {
-        $this->mockHandler->append(new Response(500, [], json_encode([])));
-        $this->guzzleHttpClient->getUrl('/voertuig/xx-xx-xx');
-    }
-
-    /**
      * @expectedException \MStroink\OverheidIo\Exception\UnauthorizedException
      */
     public function testGetUrlWith401Exception()

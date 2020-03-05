@@ -42,5 +42,22 @@
                 "tests/"
             ]
         }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@phpstan",
+            "@test"
+        ],
+        "setup": [
+            "@phpstan-setup",
+            "@cs-setup"
+        ],
+        "phpstan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan && mv composer.backup composer.json",
+        "phpstan": "phpstan analyse -c phpstan.neon -l 5 src/",
+        "test": "phpunit --colors=always",
+        "cs-setup": "cp composer.json composer.backup && composer require --dev squizlabs/php_codesniffer && mv composer.backup composer.json",
+        "cs-check": "phpcs --colors --standard=PSR1,PSR2 -p src/ tests/",
+        "cs-fix": "phpcbf --colors --standard=PSR1,PSR2 -p src/ tests/"
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace MStroink\OverheidIo\Tests\Api;
 
 use MStroink\OverheidIo\Api\Bag;

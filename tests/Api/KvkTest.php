@@ -19,12 +19,14 @@ class KvkTest extends ApiTestBase
         $data = ['handelsnaam' => [0 => ['text' => 'valken']]];
         $response = new Response(200, [], json_encode($data));
 
+        $query = 'fields%5B0%5D=handelsnaam';
+        $expectedUrl = sprintf('%s/suggest/%s/%s?%s', $this->baseUrl, $this->resource, $searchString, $query);
+
         $this->clientMock
             ->expects($this->once())
             ->method('getUrl')
             ->with(
-                $this->equalTo($this->baseUrl . '/suggest/' . $this->resource . '/' . $searchString),
-                $this->equalTo(['fields' => ['handelsnaam']])
+                $this->equalTo($expectedUrl)
             )
             ->will($this->returnValue($response));
         

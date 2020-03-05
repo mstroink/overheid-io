@@ -3,7 +3,12 @@ declare(strict_types=1);
 
 namespace MStroink\OverheidIo\Api;
 
-final class Rdw extends ApiAbstract
+final class Rdw extends Api
 {
-    public $resource = "voertuiggegevens";
+    const RESOURCE = 'voertuiggegevens';
+
+    protected function getResourceName(): string
+    {
+        return self::RESOURCE;
+    }
 }

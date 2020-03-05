@@ -1,17 +1,20 @@
 <?php
+declare(strict_types=1);
+
 namespace MStroink\OverheidIo\Tests;
 
-use MStroink\OverheidIo\OverheidIo;
-use MStroink\OverheidIo\Http\HttpClientInterface;
-use MStroink\OverheidIo\Api\Kvk;
 use MStroink\OverheidIo\Api\Bag;
+use MStroink\OverheidIo\Api\Kvk;
 use MStroink\OverheidIo\Api\Rdw;
+use MStroink\OverheidIo\Http\HttpClientInterface;
+use MStroink\OverheidIo\OverheidIo;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
 
 class OverheidIoTest extends TestCase
 {
     /**
-     * @var OverheidIo
+     * @var OverheidIo|PHPUnit_Framework_MockObject_MockObject
      */
     protected $overheidIo;
 
@@ -19,7 +22,7 @@ class OverheidIoTest extends TestCase
     {
         $clientMock = $this->getMockBuilder(HttpClientInterface::class)
             ->getMock();
-        
+
         $this->overheidIo = new OverheidIo($clientMock);
     }
 
