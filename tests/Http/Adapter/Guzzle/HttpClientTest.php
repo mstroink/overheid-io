@@ -5,6 +5,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use MStroink\OverheidIo\Exception\NotFoundException;
+use MStroink\OverheidIo\Exception\OverheidIoException;
+use MStroink\OverheidIo\Exception\UnauthorizedException;
 use MStroink\OverheidIo\Http\Adapter\Guzzle\HttpClient;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -14,7 +17,7 @@ class HttpClientTest extends TestCase
     protected $guzzleHttpClient;
     protected $mockHandler;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mockHandler = new MockHandler();
         $handler = HandlerStack::create($this->mockHandler);
@@ -54,29 +57,26 @@ class HttpClientTest extends TestCase
         $this->assertSame($json, json_encode($expected));
     }
 
-    /**
-     * @expectedException \MStroink\OverheidIo\Exception\NotFoundException
-     */
     public function testGetUrlWith404Exception()
     {
+        $this->expectException(NotFoundException::class);
+
         $this->mockHandler->append(new Response(404, [], json_encode([])));
         $this->guzzleHttpClient->getUrl('/voertuig/xx-xx-xx');
     }
 
-    /**
-     * @expectedException \MStroink\OverheidIo\Exception\UnauthorizedException
-     */
     public function testGetUrlWith401Exception()
     {
+        $this->expectException(UnauthorizedException::class);
+
         $this->mockHandler->append(new Response(401, [], json_encode([])));
         $this->guzzleHttpClient->getUrl('/voertuig/xx-xx-xx');
     }
 
-    /**
-     * @expectedException \MStroink\OverheidIo\Exception\OverheidIoException
-     */
     public function testGetUrlWithUnknownException()
     {
+        $this->expectException(OverheidIoException::class);
+
         $this->mockHandler->append(new Response(433, [], json_encode([])));
         $this->guzzleHttpClient->getUrl('/voertuig/xx-xx-xx');
     }

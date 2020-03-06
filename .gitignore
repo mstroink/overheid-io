@@ -6,3 +6,4 @@ composer.phar
 phpunit.phar
 .DS_Store
 docs
+.phpunit.result.cache

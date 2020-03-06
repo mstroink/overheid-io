@@ -21,8 +21,8 @@ final class ExceptionHandler
                 throw new UnauthorizedException('Unauthorized', 401, $exception);
             case 500 <= $statusCode:
                 throw new ServerException('An unexpected error occurred', $statusCode, $exception);
-            default:
-                throw new UnknownException('Unkown server error', $statusCode, $exception);
         }
+
+        throw new UnknownException('Unkown server error', $statusCode, $exception);
     }
 }

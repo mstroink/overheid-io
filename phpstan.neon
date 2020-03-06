@@ -1,3 +1,8 @@
 parameters:
+	inferPrivatePropertyTypeFromConstructor: true
 	autoload_files:
 		- vendor/autoload.php
+	ignoreErrors:
+		-
+			message: '#Method [a-zA-Z0-9\\_]+::getUrl\(\) should return#'
+			path: src/Http/Adapter/Guzzle/HttpClient.php

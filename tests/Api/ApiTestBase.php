@@ -13,7 +13,7 @@ abstract class ApiTestBase extends TestCase
 
     abstract public function getInstance();
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->clientMock = $this->getMockBuilder(HttpClientInterface::class)->getMock();
     }

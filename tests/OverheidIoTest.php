@@ -18,7 +18,7 @@ class OverheidIoTest extends TestCase
      */
     protected $overheidIo;
 
-    public function setUp()
+    public function setUp(): void
     {
         $clientMock = $this->getMockBuilder(HttpClientInterface::class)
             ->getMock();

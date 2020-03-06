@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace MStroink\OverheidIo\Http\Adapter\Guzzle;
 
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use MStroink\OverheidIo\Http\Adapter\Guzzle\Exception\ExceptionHandler;
 use MStroink\OverheidIo\Http\HttpClientInterface;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
+use RuntimeException;
 
 final class HttpClient implements HttpClientInterface
 {
