@@ -1,3 +1,18 @@
+<p align="center">
+    <a href="https://travis-ci.com/mstroink/overheid-io" target="_blank">
+        <img alt="Build Status" src="https://travis-ci.com/mstroink/overheid-io.svg?branch=master">
+    </a>
+    <a href="https://codecov.io/gh/mstroink/overheid-io" target="_blank">
+        <img alt="Coverage Status" src="https://codecov.io/gh/mstroink/overheid-io/branch/master/graph/badge.svg">
+    </a>
+    <a href="https://packagist.org/packages/mstroink/overheid-io" target="_blank">
+        <img alt="Stable" src="https://poser.pugx.org/mstroink/overheid-io/v/stable.svg">
+    </a>
+    <a href="https://php.net" target="_blank">
+        <img alt="php Version" src="https://img.shields.io/badge/php-%3E=%207.2-8892BF.svg">
+    </a>
+</p>
+
 # Simple PHP wrapper for Overheid.io
 This package provides a simple client for consuming the OverheidIo Api.
 

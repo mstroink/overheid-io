@@ -1,6 +1,5 @@
 {
     "name": "mstroink/overheid-io",
-    "version": "1.0.0",
     "description": "Simple client for consuming OverheidIo API",
     "keywords": [
         "overheid.io",
