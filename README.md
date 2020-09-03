@@ -34,7 +34,7 @@ require 'vendor/autoload.php';
 
 ## Usage
 ```php
-use Mstroink\OverheidIo\OverheidIoFactory;
+use MStroink\OverheidIo\OverheidIoFactory;
 
 $overheid = new OverheidIoFactory::create($apiKey);
 ```
@@ -42,7 +42,7 @@ $overheid = new OverheidIoFactory::create($apiKey);
 Or use your own (authenticated) client. An adapter is required to be an implementation of \MStroink\OverheidIo\Http\HttpClientInterface
 
 ```php
-use Mstroink\OverheidIo\OverheidIo;
+use MStroink\OverheidIo\OverheidIo;
 
 $overheid = new OverheidIo($client);
 ```
