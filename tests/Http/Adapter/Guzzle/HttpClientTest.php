@@ -1,4 +1,5 @@
 <?php
+
 namespace MStroink\OverheidIo\Tests\Http\Adapter\Guzzle;
 
 use GuzzleHttp\Client;
