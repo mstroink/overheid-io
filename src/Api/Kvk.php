@@ -5,7 +5,7 @@ namespace MStroink\OverheidIo\Api;
 
 final class Kvk extends Api
 {
-    const RESOURCE = 'openkvk';
+    public const RESOURCE = 'openkvk';
 
     protected function getResourceName(): string
     {

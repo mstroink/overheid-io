@@ -5,7 +5,7 @@ namespace MStroink\OverheidIo\Api;
 
 final class Rdw extends Api
 {
-    const RESOURCE = 'voertuiggegevens';
+    public const RESOURCE = 'voertuiggegevens';
 
     protected function getResourceName(): string
     {

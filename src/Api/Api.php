@@ -10,10 +10,10 @@ use RuntimeException;
 
 abstract class Api
 {
-    const BASE_URL = 'https://api.overheid.io';
-
     use QueryBuilderTrait;
     use PaginationTrait;
+
+    public const BASE_URL = 'https://api.overheid.io';
 
     /**
      * @var HttpClientInterface
